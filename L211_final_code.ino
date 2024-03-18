@@ -617,26 +617,15 @@ int getColour()  {
   //uses the colour sensor to return the
   uint16_t clear, red, green, blue;
   tcs.getRGBC(&red, &green, &blue, &clear);
-  // tcs.lock(); // What does this line do?
-  /*
-  Serial.print("C:\t"); Serial.print(clear);
-  Serial.print("\tR:\t"); Serial.print(red);
-  Serial.print("\tG:\t"); Serial.print(green);
-  Serial.print("\tB:\t"); Serial.print(blue);
-  Serial.println("\t");
-*/
+
   uint32_t sum = clear;
   float r, g, b;
   r = red; r /= sum;
   g = green; g /= sum;
   b = blue; b /= sum;
   r *= 256; g *= 256; b *= 256;
-  /*
-  Serial.print("\t");
-  Serial.print((int)r, HEX); Serial.print((int)g, HEX); Serial.print((int)b, HEX);
-  Serial.println();
-*/
-  // Check conditions and return color value
+
+  // Check conditions, change the LED settings and return color value
   if ( red > 0.55 * clear) // Change the parameter here after testing
   {
     digitalWrite(led2, LOW);
